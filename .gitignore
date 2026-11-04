@@ -1,0 +1,27 @@
+# Android/Gradle outputs and local caches
+.gradle/
+.android-sdk/
+**/build/
+local.properties
+*.iml
+.idea/
+
+# Local Ditto source checkout and protocol experiments
+.ditto-source/
+.protocol-reference/
+protocol-harness/
+
+# Local previews and the locally signed development APK
+AndroDitto.apk
+androditto*.png
+androditt*.png
+androttistory*.png
+swipe-*.png
+icon-options/
+ui-mockups/
+
+# Machine-specific setup helpers and downloaded toolchains
+bootstrap_android.ps1
+bootstrap_android.py
+gradle-8.9/
+.gradle-8.9-bin.zip
