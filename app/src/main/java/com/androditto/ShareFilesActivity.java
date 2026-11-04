@@ -36,7 +36,7 @@ public final class ShareFilesActivity extends Activity {
         root.setPadding(28, 24, 28, 20);
         root.setLayoutParams(new ViewGroup.LayoutParams(-1, -2));
         TextView title = new TextView(this);
-        title.setText("AndroDitto · Send files to PC");
+        title.setText("Ditto Link · Send files to PC");
         title.setTextSize(20);
         root.addView(title);
         status = new TextView(this);
@@ -49,9 +49,9 @@ public final class ShareFilesActivity extends Activity {
         String host = prefs.getString("host", "").trim();
         String password = prefs.getString("password", "");
         if (host.isEmpty() || password.isEmpty()) {
-            status.setText("Set the PC Tailscale IP and Ditto password in AndroDitto first.");
+            status.setText("Set the PC Tailscale IP and Ditto password in Ditto Link first.");
             Button open = new Button(this);
-            open.setText("Open AndroDitto");
+            open.setText("Open Ditto Link");
             root.addView(open);
             open.setOnClickListener(v -> {
                 startActivity(new Intent(this, MainActivity.class));
@@ -65,7 +65,7 @@ public final class ShareFilesActivity extends Activity {
             showError("No shareable files were received.");
             return;
         }
-        new Thread(() -> sendFiles(host, password, uris), "AndroDitto-share-files").start();
+        new Thread(() -> sendFiles(host, password, uris), "DittoLink-share-files").start();
     }
 
     private void sendFiles(String host, String password, List<Uri> uris) {
@@ -94,7 +94,7 @@ public final class ShareFilesActivity extends Activity {
             if (Build.VERSION.SDK_INT >= 26) startForegroundService(service); else startService(service);
             long deadline = System.currentTimeMillis() + 8000;
             while (!ClipboardListenerService.isReady() && System.currentTimeMillis() < deadline) Thread.sleep(100);
-            if (!ClipboardListenerService.isReady()) throw new java.io.IOException("AndroDitto could not start its file listener.");
+            if (!ClipboardListenerService.isReady()) throw new java.io.IOException("Ditto Link could not start its file listener.");
 
             DittoProtocol.sendFileClip(host, password, MainActivity.tailscaleAddress(), names);
             for (String name : names) TransferHistory.add(this, "SENT", "FILE", name);

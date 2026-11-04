@@ -35,14 +35,14 @@ final class DittoProtocol {
 
     static void sendFileClip(String host, String password, String localIp, java.util.List<String> names) throws Exception {
         StringBuilder paths = new StringBuilder();
-        for (String name : names) paths.append("C:\\AndroDitto\\").append(name.replace('\\', '_').replace('/', '_')).append('\0');
+        for (String name : names) paths.append("C:\\DittoLink\\").append(name.replace('\\', '_').replace('/', '_')).append('\0');
         paths.append('\0');
         byte[] pathBytes = paths.toString().getBytes(StandardCharsets.UTF_16LE);
         ByteBuffer drop = ByteBuffer.allocate(20 + pathBytes.length).order(ByteOrder.LITTLE_ENDIAN);
         drop.putInt(20).putInt(0).putInt(0).putInt(0).putInt(1).put(pathBytes);
         try (Socket socket = new Socket(InetAddress.getByName(host), PORT)) {
             OutputStream out = socket.getOutputStream();
-            out.write(encrypt(sendInfo(0, "AndroDitto", localIp, "Files", 0, PORT), password));
+            out.write(encrypt(sendInfo(0, "Ditto Link", localIp, "Files", 0, PORT), password));
             byte[] encryptedDrop = encrypt(drop.array(), password);
             out.write(encrypt(sendInfo(2, "", "", "CF_HDROP", encryptedDrop.length), password));
             out.write(encryptedDrop);
@@ -66,7 +66,7 @@ final class DittoProtocol {
         try (Socket socket = new Socket(InetAddress.getByName(host), port)) {
             socket.setSoTimeout(10000);
             OutputStream out = socket.getOutputStream();
-            out.write(encrypt(sendInfo(0, "AndroDitto", localIp, "Text", 0), password));
+            out.write(encrypt(sendInfo(0, "Ditto Link", localIp, "Text", 0), password));
             byte[] encryptedClip = encrypt(clip, password);
             out.write(encrypt(sendInfo(2, "", "", "CF_UNICODETEXT", encryptedClip.length), password));
             out.write(encryptedClip);
@@ -194,7 +194,7 @@ final class DittoProtocol {
         try (Socket socket = new Socket(InetAddress.getByName(host), port)) {
             socket.setSoTimeout(30000);
             InputStream in = socket.getInputStream(); OutputStream out = socket.getOutputStream();
-            out.write(encrypt(sendInfo(0, "AndroDitto", "", "Request files", 0), password));
+            out.write(encrypt(sendInfo(0, "Ditto Link", "", "Request files", 0), password));
             byte[] encryptedDrop = encrypt(drop, password);
             out.write(encrypt(sendInfo(2, "", "", "CF_HDROP", encryptedDrop.length), password));
             out.write(encryptedDrop);

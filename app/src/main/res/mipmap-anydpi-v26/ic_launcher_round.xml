@@ -1,4 +1,4 @@
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
     <background android:drawable="@color/launcher_background" />
-    <foreground android:drawable="@drawable/androditto_icon_art" />
+    <foreground android:drawable="@drawable/dittolink_icon_art" />
 </adaptive-icon>

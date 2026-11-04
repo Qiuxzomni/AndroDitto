@@ -54,7 +54,7 @@ public final class ClipboardListenerService extends Service {
         }
         Thread current = listenerThread;
         if (current == null || !current.isAlive()) {
-            listenerThread = new Thread(() -> listenUntilStopped(secret), "AndroDitto-listener");
+            listenerThread = new Thread(() -> listenUntilStopped(secret), "DittoLink-listener");
             listenerThread.start();
         }
         return START_STICKY;
@@ -101,7 +101,7 @@ public final class ClipboardListenerService extends Service {
                                 getSystemService(NotificationManager.class).notify(SERVICE_NOTIFICATION + 1,
                                         notification(visibleCount == files.size()
                                                 ? "Received " + files.size() + " file(s) — saved to Download/Ditto"
-                                                : "Received " + files.size() + " file(s) in AndroDitto"));
+                                                : "Received " + files.size() + " file(s) in Ditto Link"));
                             }
                         }, () -> listenerReady = true);
             } catch (Exception e) {
@@ -182,7 +182,7 @@ public final class ClipboardListenerService extends Service {
         Notification.Builder builder = Build.VERSION.SDK_INT >= 26
                 ? new Notification.Builder(this, CHANNEL) : new Notification.Builder(this);
         return builder.setSmallIcon(android.R.drawable.stat_notify_sync_noanim)
-                .setContentTitle("AndroDitto")
+                .setContentTitle("Ditto Link")
                 .setContentText(message)
                 .setOngoing(message.startsWith("Ready") || message.startsWith("Reconnecting"))
                 .addAction(android.R.drawable.ic_media_pause, "Stop", stopIntent)

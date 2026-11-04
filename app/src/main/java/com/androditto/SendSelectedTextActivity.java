@@ -19,7 +19,7 @@ public final class SendSelectedTextActivity extends Activity {
         root.setPadding(28, 24, 28, 20);
         root.setLayoutParams(new ViewGroup.LayoutParams(-1, -2));
         TextView title = new TextView(this);
-        title.setText("AndroDitto · Send to PC");
+        title.setText("Ditto Link · Send to PC");
         title.setTextSize(20);
         root.addView(title);
         TextView status = new TextView(this);
@@ -38,9 +38,9 @@ public final class SendSelectedTextActivity extends Activity {
             return;
         }
         if (host.isEmpty() || password.isEmpty()) {
-            status.setText("Set the PC Tailscale IP and Ditto password in AndroDitto first.");
+            status.setText("Set the PC Tailscale IP and Ditto password in Ditto Link first.");
             Button open = new Button(this);
-            open.setText("Open AndroDitto");
+            open.setText("Open Ditto Link");
             root.addView(open);
             open.setOnClickListener(v -> {
                 startActivity(new android.content.Intent(this, MainActivity.class));
@@ -70,7 +70,7 @@ public final class SendSelectedTextActivity extends Activity {
                     close.setOnClickListener(v -> finish());
                 }
             });
-        }, "AndroDitto-send-selection").start();
+        }, "DittoLink-send-selection").start();
     }
 
     private void showError(TextView status, String message) {

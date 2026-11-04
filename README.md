@@ -1,6 +1,6 @@
-# AndroDitto
+# Ditto Link
 
-AndroDitto connects an Android phone to [Ditto Clipboard Manager](https://ditto-cp.sourceforge.io/) over your Tailscale network. It transfers text and files between the phone and a Windows PC running Ditto.
+Ditto Link connects an Android phone to [Ditto Clipboard Manager](https://ditto-cp.sourceforge.io/) over your Tailscale network. It transfers text and files between the phone and a Windows PC running Ditto.
 
 ## Features
 
@@ -15,8 +15,8 @@ AndroDitto connects an Android phone to [Ditto Clipboard Manager](https://ditto-
 
 1. Connect both devices to Tailscale.
 2. In Ditto on the PC, open **Options → Friends**, add the phone's Tailscale IP, and enable **Send All Copies** if PC clipboard changes should be sent automatically.
-3. In AndroDitto, enter the PC's Tailscale IP and Ditto network password.
-4. Turn on **Background Receive** to receive clipboard text and files while AndroDitto is in the background.
+3. In Ditto Link, enter the PC's Tailscale IP and Ditto network password.
+4. Turn on **Background Receive** to receive clipboard text and files while Ditto Link is in the background.
 
 Android does not provide a general-purpose file clipboard. Files received from the PC are saved in `Download/Ditto`; use **Share Last** to send one to another phone app.
 
@@ -29,4 +29,3 @@ Requirements: JDK 17 and Android SDK Platform 35.
 ```
 
 On Windows, use `gradlew.bat assembleDebug`. The debug APK is generated at `app/build/outputs/apk/debug/app-debug.apk`.
-
